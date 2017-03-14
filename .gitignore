@@ -1,0 +1,6 @@
+#.o files
+*.o
+#docs folder
+docs/*
+#driver
+*.csh

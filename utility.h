@@ -1,4 +1,7 @@
-#define MakroGetter(Function,Param)                 \
+#ifndef UTILITY_H
+#define UTILITY_H
+
+#define MakroGetterAnimal(Function,Param)           \
 {                                                   \
   if(Param.id == "WF"){                             \
     return ((Wolf *)(Param.c))->Function();         \
@@ -80,7 +83,7 @@
   }                                                 \
 }
 
-#define MakroSetter(Function,Param)                 \
+#define MakroSetterCell(Function,Param)             \
 {                                                   \
   if(Param.id == "WF"){                             \
     ((Wolf *)(Param.c))->Function(Param)  ;         \
@@ -162,3 +165,5 @@
   }                                                 \
 }
 
+
+#endif

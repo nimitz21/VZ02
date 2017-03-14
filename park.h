@@ -31,6 +31,33 @@ public:
   ~Park();
 
   /**
+   * \brief GetInitSymbol.
+   * \details membalikan nilai initsymbol cell.
+   * \return init symbol.
+   */
+  char GetInitSymbol() const;
+
+  /**
+   * \brief GetSymbol.
+   * \details mengembalikan nilai simbol cell.
+   * \return symbol.
+   */
+  char GetSymbol() const;
+
+  /**
+   * \brief SetSymbol.
+   * \details mengubah symbol dengan s.
+   * \param s symbol yang baru.
+   */
+  void SetSymbol(char s);
+
+  /**
+   * \brief Render
+   * \details Menampilkan represetnasi cell pada layar
+   */
+  void Render();
+  
+  /**
    * \brief GetPlant
    * \details Mengembalikan tanaman yang tertanam pada taman
    * \return string
@@ -57,6 +84,8 @@ public:
   bool GetSekat(int direction) const;
 
 private:
+  char initsymbol;
+  char symbol;
   string plant;
 };
 

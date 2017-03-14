@@ -29,6 +29,33 @@ public:
   ~Habitat();
 
   /**
+   * \brief GetInitSymbol.
+   * \details membalikan nilai initsymbol cell.
+   * \return init symbol.
+   */
+  char GetInitSymbol() const;
+
+  /**
+   * \brief GetSymbol.
+   * \details mengembalikan nilai simbol cell.
+   * \return symbol.
+   */
+  char GetSymbol() const;
+
+  /**
+   * \brief SetSymbol.
+   * \details mengubah symbol dengan s.
+   * \param s symbol yang baru.
+   */
+  void SetSymbol(char s);
+
+  /**
+   * \brief Render
+   * \details Menampilkan represetnasi cell pada layar
+   */
+  void Render();
+
+  /**
    * \brief OpenSekat
    * \details Membuka sekat dengan arah sesuai direction jika sedang tertutup. Menutup sekat jika sedang terbuka
    * \details I.S Sekat yang dibuka selalu valid (tidak membuka sekat ke luar cage)
@@ -47,7 +74,9 @@ public:
   //Tidak diimplementasi
   void Interact() const;
 
-protected:
+private:
+  char initsymbol;
+  char symbol;  
   bool sekat[4];
 };
 

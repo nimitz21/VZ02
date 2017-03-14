@@ -15,6 +15,22 @@ Habitat::Habitat(char s) {
 
 Habitat::~Habitat() {}
 
+char Cell::GetInitSymbol() const {
+  return initsymbol;
+}
+
+char Cell::GetSymbol() const {
+  return symbol;
+}
+
+void Cell::SetSymbol(char s) {
+  symbol = s;
+}
+
+void Cell::Render() {
+  cout << symbol;
+}
+
 void Habitat::ToggleSekat(int direction) {
   if (sekat[direction]) {
     sekat[direction] = false;

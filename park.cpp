@@ -19,6 +19,22 @@ Park::~Park() {
 
 }
 
+char Cell::GetInitSymbol() const {
+  return initsymbol;
+}
+
+char Cell::GetSymbol() const {
+  return symbol;
+}
+
+void Cell::SetSymbol(char s) {
+  symbol = s;
+}
+
+void Cell::Render() {
+  cout << symbol;
+}
+
 string Park::GetPlant() const {
   return plant;
 }

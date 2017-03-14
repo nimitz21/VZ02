@@ -3,8 +3,7 @@
 #ifndef ZOO_H
 #define ZOO_H
 
-#include "renderable.h"
-#include "animal.h"
+#include "pointer.h"
 #include "realAnimals/wolf.h"
 #include "realAnimals/lion.h"
 #include "realAnimals/zebra.h"
@@ -31,7 +30,6 @@
 #include "realAnimals/draco_lizard.h"
 #include "realAnimals/colugo.h"
 #include "realAnimals/sugar_glider.h"
-#include "cell.h"
 #include <list>
 #include <queue>
 using namespace std;
@@ -73,9 +71,9 @@ class Zoo{
       * @param Animal a, hewan yang akan ditambahkan
       */
 
-    list<Animal*>::iterator FindAnimal(pair<int,int> pos);
+    list<Pointer>::iterator FindAnimal(pair<int,int> pos);
 
-    void AddAnimal(Animal* animal);
+    void AddAnimal(Pointer animal);
 
     /**
      * \brief DelAnimal dengan ID
@@ -165,8 +163,8 @@ class Zoo{
   private:
     const int width;
     const int length;
-    Cell*** cells;
-    list<Animal*> animals;
+    Pointer** cells;
+    list<Pointer> animals;
     int** cage_map;
     int cage_nb;
 };

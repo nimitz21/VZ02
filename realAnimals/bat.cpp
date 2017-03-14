@@ -11,7 +11,6 @@ Bat::Bat(pair<int,int> _position):
      Animal("BT", ++bat_nb, '*', 0.15, food, 'O', _position) {
   eat = food;
   habitat.insert('A');
-  msg = " ";
   compatible.insert("HMB");
   compatible.insert("CKT");
   compatible.insert("RBN");
@@ -34,7 +33,7 @@ Bat::Bat(float _weight, pair<int,int> _position):
   compatible.insert("CRN");
 }
 
-Bat::~Bat(){}
+Bat::~Bat() {}
 
 Bat::Bat(const Bat& b): 
      Animal(b.id, b.number, b.legend, b.weight, b.eat, b.type, b.position) {
@@ -49,8 +48,8 @@ Bat& Bat::operator=(const Bat& b) {
 
 void Bat::Act() const {
   cout << id << "-";
-  if (number < 10){
-    cout << "0"; 
+  if (number < 10) {
+    cout << "0";
   }
   cout << number  << ": *screech*" << endl;
 }

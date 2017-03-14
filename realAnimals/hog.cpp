@@ -1,7 +1,6 @@
 //File hog.cpp
 
 #include "hog.h"
-#include "../animal.h"
 #include <iostream>
 using namespace std;
 

@@ -15,19 +15,19 @@ Habitat::Habitat(char s) {
 
 Habitat::~Habitat() {}
 
-char Cell::GetInitSymbol() const {
+char Habitat::GetInitSymbol() const {
   return initsymbol;
 }
 
-char Cell::GetSymbol() const {
+char Habitat::GetSymbol() const {
   return symbol;
 }
 
-void Cell::SetSymbol(char s) {
+void Habitat::SetSymbol(char s) {
   symbol = s;
 }
 
-void Cell::Render() {
+void Habitat::Render() {
   cout << symbol;
 }
 

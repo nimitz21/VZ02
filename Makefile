@@ -1,8 +1,11 @@
 CXX = g++
 CFLAGS = -std=c++11
 LFLAGS = -g -Wall -std=c++11
-main: driver.o road.o restaurant.o park.o zoo.o habitat.o wolf.o lion.o zebra.o elephant.o hog.o macaque.o shark.o moray_eel.o dugong.o turtle.o dolphin.o whale.o eagle.o owl.o hummingbird.o cockatoo.o robin.o bat.o penguin.o hippopotamus.o pelican.o goose.o crane.o draco_lizard.o colugo.o sugar_glider.o
-	$(CXX) $(LFLAGS) -o main driver.o road.o restaurant.o park.o zoo.o habitat.o wolf.o lion.o zebra.o elephant.o hog.o macaque.o shark.o moray_eel.o dugong.o turtle.o dolphin.o whale.o eagle.o owl.o hummingbird.o cockatoo.o robin.o bat.o penguin.o hippopotamus.o pelican.o goose.o crane.o draco_lizard.o colugo.o sugar_glider.o
+main: main.o driver.o road.o restaurant.o park.o zoo.o habitat.o wolf.o lion.o zebra.o elephant.o hog.o macaque.o shark.o moray_eel.o dugong.o turtle.o dolphin.o whale.o eagle.o owl.o hummingbird.o cockatoo.o robin.o bat.o penguin.o hippopotamus.o pelican.o goose.o crane.o draco_lizard.o colugo.o sugar_glider.o
+	$(CXX) $(LFLAGS) -o main main.o driver.o road.o restaurant.o park.o zoo.o habitat.o wolf.o lion.o zebra.o elephant.o hog.o macaque.o shark.o moray_eel.o dugong.o turtle.o dolphin.o whale.o eagle.o owl.o hummingbird.o cockatoo.o robin.o bat.o penguin.o hippopotamus.o pelican.o goose.o crane.o draco_lizard.o colugo.o sugar_glider.o
+
+main.o: main.cpp
+	$(CXX) $(CFLAGS) -c main.cpp
 	
 driver.o: driver.cpp driver.h zoo.h pointer.h
 	$(CXX) $(CFLAGS) -c driver.cpp

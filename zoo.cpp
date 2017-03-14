@@ -20,7 +20,7 @@ MakroGetterAnimal(string,GetId,in);
 MakroGetterAnimal(int,GetNumber,in);
 MakroGetterAnimal(float,GetWeight,in);
 MakroGetterAnimal(float,GetEat,in);
-MakroGetterAnimal(pair<int,int>,GetPos,in);
+MakroGetterAnimal(pairintint,GetPos,in);
 MakroGetterAnimal(char,GetType,in);
 MakroGetterAnimal(char,GetLegend,in);
 MakroGetterAnimal(set<char>,GetHabitat,in);
@@ -42,64 +42,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
       int i = 0;
       while (getline(ifile, line)) {
         for (int j = 0; j < length; ++j) {
-          switch (line[j]) {
-            case 'W': {
-              Habitat w ('W');
-              Habitat* pw = &w;
-              cells[i][j].p = (Habitat*) pw;
-              cells[i][j].id = "HA"; 
-            }
-            break;
-            case 'A': {
-              Habitat a ('A');
-              Habitat* pa = &a;
-              cells[i][j].p = (Habitat*) pa;
-              cells[i][j].id = "HA"; 
-            }  
-            break;
-            case 'L': {
-              Habitat l ('L');
-              Habitat* pl = &l;
-              cells[i][j].p = (Habitat*) pl;
-              cells[i][j].id = "HA"; 
-            }  
-            break;
-            case 'X': {
-              Road x ('X');
-              Road* px = &x;
-              cells[i][j].p = (Road*) px;
-              cells[i][j].id = "RO"; 
-            } 
-            break; 
-            case 'N': {
-              Road n ('N');
-              Road* pn = &n;
-              cells[i][j].p = (Road*) pn;
-              cells[i][j].id = "RO"; 
-            }  
-            break;
-            case 'r': {
-              Road r ('r');
-              Road* pr = &r;
-              cells[i][j].p = (Road*) pr;
-              cells[i][j].id = "RO"; 
-            }  
-            break;
-            case 'R': {
-              Restaurant rt;
-              Restaurant* prt = &rt;
-              cells[i][j].p = (Restaurant*) prt;
-              cells[i][j].id = "RE";
-            }
-            break;
-            case 'P': {
-              Park p;
-              Park* pp = &p;
-              cells[i][j].p = (Park*) pp;
-              cells[i][j].id = "PA";
-            }  
-            break;
-          }
+          MakroNewCell(line[j]); 
         }
         ++i;
       }
@@ -110,64 +53,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
     for (int i = 0; i < width; ++i) {
       getline(cin, line);
       for (int j = 0; j < length; ++j) {
-        switch (line[j]) {
-          case 'W': {
-              Habitat w ('W');
-              Habitat* pw = &w;
-              cells[i][j].p = (Habitat*) pw;
-              cells[i][j].id = "HA"; 
-            }
-            break;
-            case 'A': {
-              Habitat a ('A');
-              Habitat* pa = &a;
-              cells[i][j].p = (Habitat*) pa;
-              cells[i][j].id = "HA"; 
-            }  
-            break;
-            case 'L': {
-              Habitat l ('L');
-              Habitat* pl = &l;
-              cells[i][j].p = (Habitat*) pl;
-              cells[i][j].id = "HA"; 
-            }  
-            break;
-            case 'X': {
-              Road x ('X');
-              Road* px = &x;
-              cells[i][j].p = (Road*) px;
-              cells[i][j].id = "RO"; 
-            } 
-            break; 
-            case 'N': {
-              Road n ('N');
-              Road* pn = &n;
-              cells[i][j].p = (Road*) pn;
-              cells[i][j].id = "RO"; 
-            }  
-            break;
-            case 'r': {
-              Road r ('r');
-              Road* pr = &r;
-              cells[i][j].p = (Road*) pr;
-              cells[i][j].id = "RO"; 
-            }  
-            break;
-            case 'R': {
-              Restaurant rt;
-              Restaurant* prt = &rt;
-              cells[i][j].p = (Restaurant*) prt;
-              cells[i][j].id = "RE";
-            }
-            break;
-            case 'P': {
-              Park p;
-              Park* pp = &p;
-              cells[i][j].p = (Park*) pp;
-              cells[i][j].id = "PA";
-            }  
-            break;
-        }
+        MakroNewCell(line[j]);
       }
     }
   }
@@ -183,7 +69,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
   for (int i = 0; i < w; i++) {
     for (int j = 0; j < l; j++) {
       if (cage_map[i][j] == -99) { // jika belum terisi
-        char c = MakroGetterCell(GetSymbol,cells[i][j]);
+        char c = GetSymbol(cells[i][j]);
         if (c != 'W' && c != 'A' && c != 'L') {
         // jika bukan merupakan habitat akan diisi  0
           cage_map[i][j] = 0;
@@ -220,8 +106,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
                 ii = i_temp, jj = j_temp + 1, dummy = true;
               }
               if (dummy) { // jika ada sel disebelahnya
-                if (MakroGetterCell(GetSymbol,cells[ii][jj]) == c &&
-                    cage_map[ii][jj] == -99) {
+                if (GetSymbol(cells[ii][jj]) == c && cage_map[ii][jj] == -99) {
                 // jika sama habitatnya dan belum masuk ke cage
                   movable[count] = make_pair(ii,jj);
                   // menjadi salah satu pilihan
@@ -282,8 +167,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
               ii = i, jj = j + 1, dum = true;
             }
             if (dum) { // jika jalan mungkin
-              if (MakroGetterCell(GetSymbol,cells[ii][jj]) == 
-                  MakroGetterCell(GetSymbol,cells[i][j]) &&
+              if (GetSymbol(cells[ii][jj]) == GetSymbol(cells[i][j]) &&
                   cage_map[ii][jj] != -99) {
               // jika habitatnya sama, dan sudah masuk ke cage
                 movable[count] = make_pair(ii,jj);
@@ -346,162 +230,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
           }
           weight += decimal_weight;
         }
-        if (id == "WF") {
-          Wolf* pa;
-          if (weight != 0) pa = new Wolf(weight,make_pair(py,px));
-          else pa = new Wolf(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "LI") {
-          Lion* pa;
-          if (weight != 0) pa = new Lion(weight,make_pair(py,px));
-          else pa = new Lion(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "ZBR") {
-          Zebra* pa;
-          if (weight != 0) pa = new Zebra(weight,make_pair(py,px));
-          else pa = new Zebra(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "ELP") {
-          Elephant* pa;
-          if (weight != 0) pa = new Elephant(weight,make_pair(py,px));
-          else pa = new Elephant(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "MCQ") {
-          Macaque* pa;
-          if (weight != 0) pa = new Macaque(weight,make_pair(py,px));
-          else pa = new Macaque(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HG") {
-          Hog* pa;
-          if (weight != 0) pa = new Hog(weight,make_pair(py,px));
-          else pa = new Hog(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "EGL") {
-          Eagle* pa;
-          if (weight != 0) pa = new Eagle(weight,make_pair(py,px));
-          else pa = new Eagle(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "OW") {
-          Owl* pa;
-          if (weight != 0) pa = new Owl(weight,make_pair(py,px));
-          else pa = new Owl(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HMB") {
-          Hummingbird* pa;
-          if (weight != 0) pa = new Hummingbird(weight,make_pair(py,px));
-          else pa = new Hummingbird(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CKT") {
-          Cockatoo* pa;
-          if (weight != 0) pa = new Cockatoo(weight,make_pair(py,px));
-          else pa = new Cockatoo(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "RBN") {
-          Robin* pa;
-          if (weight != 0) pa = new Robin(weight,make_pair(py,px));
-          else pa = new Robin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "BT") {
-          Bat* pa;
-          if (weight != 0) pa = new Bat(weight,make_pair(py,px));
-          else pa = new Bat(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "SHK") {
-          Shark* pa;
-          if (weight != 0) pa = new Shark(weight,make_pair(py,px));
-          else pa = new Shark(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "MRE") {
-          MorayEel* pa;
-          if (weight != 0) pa = new MorayEel(weight,make_pair(py,px));
-          else pa = new MorayEel(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DGG") {
-          Dugong* pa;
-          if (weight != 0) pa = new Dugong(weight,make_pair(py,px));
-          else pa = new Dugong(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "TRL") {
-          Turtle* pa;
-          if (weight != 0) pa = new Turtle(weight,make_pair(py,px));
-          else pa = new Turtle(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DLP") {
-          Dolphin* pa;
-          if (weight != 0) pa = new Dolphin(weight,make_pair(py,px));
-          else pa = new Dolphin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "WHL") {
-          Whale* pa;
-          if (weight != 0) pa = new Whale(weight,make_pair(py,px));
-          else pa = new Whale(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "PNG") {
-          Penguin* pa;
-          if (weight != 0) pa = new Penguin(weight,make_pair(py,px));
-          else pa = new Penguin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HPP") {
-          Hippopotamus* pa;
-          if (weight != 0) pa = new Hippopotamus(weight,make_pair(py,px));
-          else pa = new Hippopotamus(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "PLC") {
-          Pelican* pa;
-          if (weight != 0) pa = new Pelican(weight,make_pair(py,px));
-          else pa = new Pelican(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "GSE") {
-          Goose* pa;
-          if (weight != 0) pa = new Goose(weight,make_pair(py,px));
-          else pa = new Goose(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CRN") {
-          Crane* pa;
-          if (weight != 0) pa = new Crane(weight,make_pair(py,px));
-          else pa = new Crane(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DRL") {
-          DracoLizard* pa;
-          if (weight != 0) pa = new DracoLizard(weight,make_pair(py,px));
-          else pa = new DracoLizard(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CLG") {
-          Colugo* pa;
-          if (weight != 0) pa = new Colugo(weight,make_pair(py,px));
-          else pa = new Colugo(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "SGL") {
-          SugarGlider* pa;
-          if (weight != 0) pa = new SugarGlider(weight,make_pair(py,px));
-          else pa = new SugarGlider(make_pair(py,px));
-          AddAnimal(pa);
-        }
+        MakroNewAnimal(id, weight);
       }
     }
     in.close();
@@ -516,7 +245,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
         char def_weight;
         int px;
         int py;
-        int weight = -1;
+        int weight = 0;
         cout << "Input id hewan :";
         cin >> id;
         cout << "Input posisi x : (kolom ke-)";
@@ -531,164 +260,9 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
             cin >> weight;
           } while (weight <= 0);
         }
-        if (id == "WF") {
-          Wolf* pa;
-          if (weight != -1) pa = new Wolf(weight, make_pair(py,px));
-          else pa = new Wolf(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "LI") {
-          Lion* pa;
-          if (weight != -1) pa = new Lion(weight, make_pair(py,px));
-          else pa = new Lion(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "ZBR") {
-          Zebra* pa;
-          if (weight != -1) pa = new Zebra(weight, make_pair(py,px));
-          else pa = new Zebra(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "ELP") {
-          Elephant* pa;
-          if (weight != -1) pa = new Elephant(weight, make_pair(py,px));
-          else pa = new Elephant(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "MCQ") {
-          Macaque* pa;
-          if (weight != -1) pa = new Macaque(weight, make_pair(py,px));
-          else pa = new Macaque(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HG") {
-          Hog* pa;
-          if (weight != -1) pa = new Hog(weight, make_pair(py,px));
-          else pa = new Hog(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "EGL") {
-          Eagle* pa;
-          if (weight != -1) pa = new Eagle(weight, make_pair(py,px));
-          else pa = new Eagle(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "OW") {
-          Owl* pa;
-          if (weight != -1) pa = new Owl(weight, make_pair(py,px));
-          else pa = new Owl(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HMB") {
-          Hummingbird* pa;
-          if (weight != -1) pa = new Hummingbird(weight, make_pair(py,px));
-          else pa = new Hummingbird(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CKT") {
-          Cockatoo* pa;
-          if (weight != -1) pa = new Cockatoo(weight, make_pair(py,px));
-          else pa = new Cockatoo(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "RBN") {
-          Robin* pa;
-          if (weight != -1) pa = new Robin(weight, make_pair(py,px));
-          else pa = new Robin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "BT") {
-          Bat* pa;
-          if (weight != -1) pa = new Bat(weight, make_pair(py,px));
-          else pa = new Bat(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "SHK") {
-          Shark* pa;
-          if (weight != -1) pa = new Shark(weight, make_pair(py,px));
-          else pa = new Shark(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "MRE") {
-          MorayEel* pa;
-          if (weight != -1) pa = new MorayEel(weight, make_pair(py,px));
-          else pa = new MorayEel(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DGG") {
-          Dugong* pa;
-          if (weight != -1) pa = new Dugong(weight, make_pair(py,px));
-          else pa = new Dugong(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "TRL") {
-          Turtle* pa;
-          if (weight != -1) pa = new Turtle(weight, make_pair(py,px));
-          else pa = new Turtle(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DLP") {
-          Dolphin* pa;
-          if (weight != -1) pa = new Dolphin(weight, make_pair(py,px));
-          else pa = new Dolphin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "WHL") {
-          Whale* pa;
-          if (weight != -1) pa = new Whale(weight, make_pair(py,px));
-          else pa = new Whale(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "PNG") {
-          Penguin* pa;
-          if (weight != -1) pa = new Penguin(weight, make_pair(py,px));
-          else pa = new Penguin(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "HPP") {
-          Hippopotamus* pa;
-          if (weight != -1) pa = new Hippopotamus(weight, make_pair(py,px));
-          else pa = new Hippopotamus(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "PLC") {
-          Pelican* pa;
-          if (weight != -1) pa = new Pelican(weight, make_pair(py,px));
-          else pa = new Pelican(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "GSE") {
-          Goose* pa;
-          if (weight != -1) pa = new Goose(weight, make_pair(py,px));
-          else pa = new Goose(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CRN") {
-          Crane* pa;
-          if (weight != -1) pa = new Crane(weight, make_pair(py,px));
-          else pa = new Crane(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "DRL") {
-          DracoLizard* pa;
-          if (weight != -1) pa = new DracoLizard(weight, make_pair(py,px));
-          else pa = new DracoLizard(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "CLG") {
-          Colugo* pa;
-          if (weight != -1) pa = new Colugo(weight, make_pair(py,px));
-          else pa = new Colugo(make_pair(py,px));
-          AddAnimal(pa);
-        }
-        else if (id == "SGL") {
-          SugarGlider* pa;
-          if (weight != -1) pa = new SugarGlider(weight, make_pair(py,px));
-          else pa = new SugarGlider(make_pair(py,px));
-          AddAnimal(pa);
-        }
+        MakroNewAnimal(id,weight);
       }
-    }while (option == 'Y' || option == 'y');
+    } while (option == 'Y' || option == 'y');
   }
 }
 
@@ -697,32 +271,7 @@ Zoo::Zoo(const Zoo& z): width(z.width), length(z.length) {
   for (int i = 0; i < width; i++) cells[i] = new Pointer [length];
   for (int i = 0; i < width; i++) {
     for (int j = 0; j < length; j++) {
-      switch (MakroGetterCell(GetInitSymbol,(z.cells[i][j]))) {
-        case 'W':
-          cells[i][j] = new Habitat('W');
-          break;
-        case 'A':
-          cells[i][j] = new Habitat('A');
-          break;
-        case 'L':
-          cells[i][j] = new Habitat('L');
-          break;
-        case 'X':
-          cells[i][j] = new Road('X');
-          break;
-        case 'N':
-          cells[i][j] = new Road('N');
-          break;
-        case 'r':
-          cells[i][j] = new Road('r');
-          break;
-        case 'R':
-          cells[i][j] = new Restaurant();
-          break;
-        case 'P':
-          cells[i][j] = new Park();
-          break;
-      }
+      MakroNewCell(GetInitSymbol(z.cells[i][j]));
     }
   }
   for (int i = 0; i < width; i++) {
@@ -731,15 +280,18 @@ Zoo::Zoo(const Zoo& z): width(z.width), length(z.length) {
     }
   }
   cage_nb = z.cage_nb;
+  int py, px;
+  for (list<Pointer>::const_iterator it = z.animals.begin(); it != z.animals.end(); ++it){
+    py = GetPos(*it).first;
+    px = GetPos(*it).second;
+    MakroNewAnimal(GetId(*it),GetWeight(*it));
+  }
 }
 
 Zoo::~Zoo() {
   for (int i = 0; i < width; i++) delete [] cage_map[i];
   delete [] cage_map;
   for (int i = 0; i < width; i++) {
-    for (int j = 0; j < length; j++) {
-      delete cells[i][j];
-    }
     delete [] cells[i];
   }
   delete [] cells;
@@ -748,32 +300,7 @@ Zoo::~Zoo() {
 Zoo& Zoo::operator=(const Zoo& z) {
   for (int i = 0; i < width; i++) {
     for (int j = 0; j < length; j++) {
-      switch (MakroGetterCell(GetInitSymbol, z.cells[i][j])) {
-        case 'W':
-          cells[i][j] = new Habitat('W');
-          break;
-        case 'A':
-          cells[i][j] = new Habitat('A');
-          break;
-        case 'L':
-          cells[i][j] = new Habitat('L');
-          break;
-        case 'X':
-          cells[i][j] = new Road('X');
-          break;
-        case 'N':
-          cells[i][j] = new Road('N');
-          break;
-        case 'r':
-          cells[i][j] = new Road('r');
-          break;
-        case 'R':
-          cells[i][j] = new Restaurant();
-          break;
-        case 'P':
-          cells[i][j] = new Park();
-          break;
-      }
+      MakroNewCell(GetInitSymbol(z.cells[i][j]));
     }
   }
   for (int i = 0; i < width; i++) {
@@ -782,6 +309,12 @@ Zoo& Zoo::operator=(const Zoo& z) {
     }
   }
   cage_nb = z.cage_nb;
+  int py, px;
+  for (list<Pointer>::const_iterator it = z.animals.begin(); it != z.animals.end(); ++it){
+    py = GetPos(*it).first;
+    px = GetPos(*it).second;
+    MakroNewAnimal(GetId(*it),GetWeight(*it));
+  }
   return *this;
 }
 
@@ -799,10 +332,10 @@ list<Pointer>::iterator Zoo::FindAnimal(pair<int,int> pos) {
   list<Pointer>::iterator e = animals.end();
   --e;
   if (it != animals.end()) {
-    while (MakroGetterAnimal(GetPos,(*it)) != pos && it != e) {
+    while (GetPos(*it) != pos && it != e) {
     ++it;
     }
-    if (MakroGetterAnimal(GetPos,(*it)) == pos) {
+    if (GetPos(*it) == pos) {
       return it;
     } else {
       return animals.end();
@@ -814,24 +347,23 @@ list<Pointer>::iterator Zoo::FindAnimal(pair<int,int> pos) {
 }
 
 void Zoo::AddAnimal(Pointer a) {
-  int posx = MakroAnimalCell(GetPos,a).first;
-  int posy = MakroAnimalCell(GetPos,a).second;
+  int posx = GetPos(a).first;
+  int posy = GetPos(a).second;
   if (posx < width && posy << length) {
     int cage = cage_map[posx][posy];
     // cek if habitat dlu
-    set<char> hab = MakroGetterAnimal(GetHabitat,a);
-    set<string> compability = MakroGetterAnimal(GetCompatible,a)();
+    set<char> hab = GetHabitat(a);
+    set<string> compability = GetCompatible(a);
     if (FindAnimal(make_pair(posx,posy)) == animals.end()) {
-      if (hab.find(MakroGetterCell(GetSymbol,cells[posx][posy])) != hab.end()) {
+      if (hab.find(GetSymbol(cells[posx][posy])) != hab.end()) {
         bool compatible = true; 
         // cek apakah ada hewan yang tidak kompatible dengan hewan a
         int count = 0; // count animal yang ada di cage yang sama
         for (list<Pointer>::const_iterator it = animals.begin();
              it != animals.end(); ++it) {
-          if (cage == cage_map[MakroGetterAnimal(GetPos,(*it)).first]
-                              [MakroGetterAnimal(GetPos,(*it)).second]) {
+          if (cage == cage_map[GetPos(*it).first][GetPos(*it).second]) {
             count++;
-            if (compability.find(MakroGetterAnimal(GetId,a)) ==
+            if (compability.find(GetId(a)) ==
                 compability.end()) {
               compatible = false;
             }
@@ -847,8 +379,7 @@ void Zoo::AddAnimal(Pointer a) {
         }
         if (0.3*max >= (count+1) && compatible) { // masih muat cagenya
           animals.push_back(a);
-          MakroSetterCell(SetSymbol,cells[posx][posy],
-                          MakroGetterAnimal(GetLegend,a));
+          MakroSetterCell(SetSymbol,cells[posx][posy],GetLegend(a));
         }
       }
     }
@@ -859,25 +390,21 @@ void Zoo::DelAnimal(string _id, int _number) {
   list<Pointer>::iterator it = animals.begin();
   list<Pointer>::iterator e = animals.end();
   --e;
-  while (MakroGetterAnimal(GetId,(*it)) != _id && 
-         MakroGetterAnimal(GetNumber,(*it)) != _number && it != e) {
+  while (GetId(*it) != _id && GetNumber(*it) != _number && it != e) {
     ++it;
   }
-  if (MakroGetterAnimal(GetId,(*it)) == _id && 
-      MakroGetterAnimal(GetNumber,(*it)) == _number) {
-    delete (*it);
+  if (GetId(*it) == _id && GetNumber(*it) == _number) {
     animals.erase(it);
   }
-  int posx = MakroGetterAnimal(GetPos,(*it)).first;
-  int posy = MakroGetterAnimal(GetPos,(*it)).second;
-  MakroSetterCell(SetSymbol,cells[posx][posy],
-                  MakroGetterCell(GetInitSymbol,cells[posx][posy]));
+  int posx = GetPos(*it).first;
+  int posy = GetPos(*it).second;
+  MakroSetterCell(SetSymbol,cells[posx][posy],GetInitSymbol(cells[posx][posy]));
 }
 
 void Zoo::DelAnimal(int x, int y) {
   if (FindAnimal(make_pair(x,y)) != animals.end()) {
-    DelAnimal(MakroGetterAnimal(GetId,(*FindAnimal(make_pair(x,y)))),
-              MakroGetterAnimal(GetNumber,(*FindAnimal(make_pair(x,y)))));
+    DelAnimal(GetId(*FindAnimal(make_pair(x,y))),
+              GetNumber(*FindAnimal(make_pair(x,y))));
   }
 }
 
@@ -886,13 +413,11 @@ float Zoo::GetTotalMeat() const {
   for (list<Pointer>::const_iterator it = animals.begin();
        it != animals.end();
        ++it) {
-    if (MakroGetterAnimal(GetType,(*it)) == 'K') {
-      sum += MakroGetterAnimal(GetWeight,(*it)) * 
-             MakroGetterAnimal(GetEat,(*it));
+    if (GetType(*it) == 'K') {
+      sum += GetWeight(*it) * GetEat(*it);
     }
-    else if (MakroGetterAnimal(GetType,(*it)) == 'O') {
-      sum += 0.5 * MakroGetterAnimal(GetWeight,(*it)) * 
-             MakroGetterAnimal(GetEat,(*it));
+    else if (GetType(*it) == 'O') {
+      sum += 0.5 * GetWeight(*it) * GetEat(*it);
     }
   }
   return sum;
@@ -903,13 +428,11 @@ float Zoo::GetTotalVegetables() const {
   for (list<Pointer>::const_iterator it = animals.begin();
        it != animals.end();
        ++it) {
-    if (MakroGetterAnimal(GetType,(*it)) == 'H') {
-      sum += MakroGetterAnimal(GetWeight,(*it)) * 
-             MakroGetterAnimal(GetEat,(*it));
+    if (GetType(*it) == 'H') {
+      sum += GetWeight(*it) * GetEat(*it);
     }
-    else if (MakroGetterAnimal(GetType,(*it)) == 'O') {
-      sum += 0.5 * MakroGetterAnimal(GetWeight,(*it)) * 
-             MakroGetterAnimal(GetEat,(*it));
+    else if (GetType(*it) == 'O') {
+      sum += 0.5 * GetWeight(*it) * GetEat(*it);
     }
   }
   return sum;
@@ -918,7 +441,7 @@ float Zoo::GetTotalVegetables() const {
 void Zoo::MoveAnimal(pair<int, int> pos, int direction) {
   list<Pointer>::iterator it = FindAnimal(pos);
   if (it != animals.end()) {
-    if (MakroGetSekat(cells[pos.first][pos.second],direction)) {
+    if (GetSekat(cells[pos.first][pos.second],direction)) {
       bool valid = false;
       int i = pos.first, j = pos.second;
       switch(direction) {
@@ -950,13 +473,11 @@ void Zoo::MoveAnimal(pair<int, int> pos, int direction) {
       if (valid) {
         if (FindAnimal(make_pair(i,j)) == animals.end()) {
           MakroMove((*it),direction);
-          MakroSetterSymbol(SetSymbol,cells[pos.first][pos.second],
-                            MakroGetterCell(GetInitSymbol,cells[pos.first]
-                                                               [pos.second]));
-          MakroSetterSymbol(SetSymbol,
-                            cells[MakroGetterAnimal(GetPos,(*it)).first]
-                                 [MakroGetterAnimal(GetPos,(*it)).second],
-                            MakroGetterAnimal(GetLegend,(*it)));
+          MakroSetterCell(SetSymbol,cells[pos.first][pos.second],
+                            GetInitSymbol(cells[pos.first][pos.second]));
+          MakroSetterCell(SetSymbol,cells[GetPos(*it).first]
+                                           [GetPos(*it).second],
+                            GetLegend(*it));
         }
       }
     }
@@ -967,13 +488,11 @@ void Zoo::MoveAnimal(string _id, int _number, int direction) {
   list<Pointer>::iterator it = animals.begin();
   list<Pointer>::iterator e = animals.end();
   --e;
-  while (MakroGetterAnimal(GetId,(*it)) != _id && 
-         MakroGetterAnimal(GetNumber,(*it)) != _number && it != e) {
+  while (GetId(*it) != _id && GetNumber(*it) != _number && it != e) {
     ++it;
   }
-  if (MakroGetterAnimal(GetId,(*it)) == _id && 
-      MakroGetterAnimal(GetNumber,(*it)) == _number) {
-    MoveAnimal(MakroGetterAnimal(GetPos,(*it)), direction);
+  if (GetId(*it) == _id && GetNumber(*it) == _number) {
+    MoveAnimal(GetPos(*it), direction);
   }
 }
 
@@ -982,13 +501,13 @@ void Zoo::MoveAllAnimal() {
   for (list<Pointer>::iterator it = animals.begin();
        it != animals.end();
        ++it) {
-    MoveAnimal(MakroGetterAnimal(GetPos,(*it)), (rand()%4));
+    MoveAnimal(GetPos(*it),(rand()%4));
   }
 }
 
 void Zoo::ToggleSekat(int i, int j, int direction) {
   if (i >= 0 && i < width && j >= 0 && j < length) {
-    char c = MakroGetterCell(GetInitSymbol,cells[i][j]);
+    char c = GetInitSymbol(cells[i][j]);
     if (c == 'W' || c == 'L' || c == 'A') {
       switch (direction) {
         case 0:
@@ -1043,7 +562,7 @@ void Zoo::Tour() {
   bool vis[width][length];
   for (int i = 0; i < width; ++i) {
     for (int j = 0; j < length; ++j) {
-      if (MakroGetterCell(GetSymbol,cells[i][j]) == 'N') {
+      if (GetSymbol(cells[i][j]) == 'N') {
         entrance.insert(make_pair(i, j));
       }
       vis[i][j] = false;
@@ -1062,14 +581,14 @@ void Zoo::Tour() {
   while (!found) {
     int i = dstack.top().first, j = dstack.top().second;
     vis[i][j] = true;
-    if (MakroGetterCell(GetSymbol,cells[i][j]) == 'X') {
+    if (GetSymbol(cells[i][j]) == 'X') {
       found = true;
       route.push_back(4);
     } else {
       char c;
       set<int> choice;
       if (i-1 >= 0) {
-        c = MakroGetterCell(GetSymbol,cells[i-1][j]);
+        c = GetSymbol(cells[i-1][j]);
         if (c == 'r' || c == 'X') {
           if (!vis[i-1][j]) {
             choice.insert(0);
@@ -1077,7 +596,7 @@ void Zoo::Tour() {
         }
       }
       if (j - 1 >= 0) {
-        c = MakroGetterCell(GetSymbol,cells[i][j-1]);
+        c = GetSymbol(cells[i][j-1]);
         if (c == 'r' || c == 'X') {
           if (!vis[i][j-1]) {
             choice.insert(1);
@@ -1085,7 +604,7 @@ void Zoo::Tour() {
         }
       }
       if (j + 1 < length) {
-        c = MakroGetterCell(GetSymbol,cells[i][j+1]);
+        c = GetSymbol(cells[i][j+1]);
         if (c == 'r' || c == 'X') {
           if (!vis[i][j+1]) {
             choice.insert(2);
@@ -1093,7 +612,7 @@ void Zoo::Tour() {
         }
       }
       if (i+1 < width) {
-        c = MakroGetterCell(GetSymbol,cells[i+1][j]);
+        c = GetSymbol(cells[i+1][j]);
         if (c == 'r' || c == 'X') {
           if (!vis[i+1][j]) {
             choice.insert(3);
@@ -1134,7 +653,7 @@ void Zoo::Tour() {
   }
   while (!route.empty()) {
     if (i - 1 >= 0) {
-      char c = MakroGetterCell(GetInitSymbol,cells[i-1][j]);
+      char c = GetInitSymbol(cells[i-1][j]);
       if (c == 'P' || c == 'R') {
         MakroInteractCell(cells[i-1][j]);
       } else if (c == 'W' || c == 'L' || c == 'A') {
@@ -1145,7 +664,7 @@ void Zoo::Tour() {
       }
     }
     if (j - 1 >= 0) {
-      char c = MakroGetterCell(GetInitSymbol,cells[i][j-1]);
+      char c = GetInitSymbol(cells[i][j-1]);
       if (c == 'P' || c == 'R') {
         MakroInteractCell(cells[i][j-1]);
       } else if (c == 'W' || c == 'L' || c == 'A') {
@@ -1156,7 +675,7 @@ void Zoo::Tour() {
       }
     }
     if (j + 1 < length) {
-      char c = MakroGetterCell(GetInitSymbol,cells[i][j+1]);
+      char c = GetInitSymbol(cells[i][j+1]);
       if (c == 'P' || c == 'R') {
         MakroInteractCell(cells[i][j+1]);
       } else if (c == 'W' || c == 'L' || c == 'A') {
@@ -1167,7 +686,7 @@ void Zoo::Tour() {
       }
     }
     if (i + 1 < width) {
-      char c = MakroGetterCell(GetInitSymbol,cells[i+1][j]);
+      char c = GetInitSymbol(cells[i+1][j]);
       if (c == 'P' || c == 'R') {
         MakroInteractCell(cells[i+1][j]);
       } else if (c == 'W' || c == 'L' || c == 'A') {

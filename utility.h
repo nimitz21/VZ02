@@ -165,7 +165,7 @@
   }                                                 \
 }
 
-#define MakroInteractAnimal(Function,Param)         \
+#define MakroInteractAnimal(Param)                  \
 {                                                   \
   if (Param.id == "WF") {                           \
     ((Wolf *)(Param.p))->Interact();                \
@@ -263,7 +263,7 @@
   }                                                 \
 }
 
-#define MakroSetterCell(Function,Param)             \
+#define MakroSetterCell(Function,Param,Value)       \
 {                                                   \
   if (Param.id == "RO") {                           \
     ((Road *)(Param.p))->Function(Value);           \
@@ -279,7 +279,7 @@
   }                                                 \
 }
 
-#define MakroInteractCell(Function,Param)           \
+#define MakroInteractCell(Param)                    \
 {                                                   \
   if (Param.id == "RO") {                           \
     ((Road *)(Param.p))->Interact();                \
@@ -294,5 +294,7 @@
     ((Restaurant *)(Param.p))->Interact();          \
   }                                                 \
 }
+
+#define MakroGetterSekat(Param, )
 
 #endif

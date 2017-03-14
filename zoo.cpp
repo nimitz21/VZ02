@@ -16,6 +16,19 @@
 
 using namespace std;
 
+MakroGetterAnimal(string,GetId,in);
+MakroGetterAnimal(int,GetNumber,in);
+MakroGetterAnimal(float,GetWeight,in);
+MakroGetterAnimal(float,GetEat,in);
+MakroGetterAnimal(pair<int,int>,GetPos,in);
+MakroGetterAnimal(char,GetType,in);
+MakroGetterAnimal(char,GetLegend,in);
+MakroGetterAnimal(set<char>,GetHabitat,in);
+MakroGetterAnimal(set<string>,GetCompatible,in);
+
+MakroGetterCell(char,GetInitSymbol,in);
+MakroGetterCell(char,GetSymbol,in);
+MakroGetterSekat(in,direction);
 
 Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
   cells = new Pointer* [width];

@@ -6,13 +6,12 @@
 #define PARK_H
 
 #include <iostream>
-#include "facility.h"
 
 using namespace std;
 /** @class Park
   * Kelas Park turunan dari kelas facility berupa taman di zoo
   */
-class Park : public Facility {
+class Park {
 public:
   /** @brief Constructor tanpa parameter
     * Menciptakan park yang berisi plant string kosong

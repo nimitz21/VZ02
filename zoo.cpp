@@ -4,7 +4,6 @@
 
 #include "zoo.h"
 #include "road.h"
-#include "facility.h"
 #include "habitat.h"
 #include "park.h"
 #include "restaurant.h"
@@ -31,30 +30,62 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
       while (getline(ifile, line)) {
         for (int j = 0; j < length; ++j) {
           switch (line[j]) {
-            case 'W':
-              cells[i][j] = new Habitat('W');
-              break;
-            case 'A':
-              cells[i][j] = new Habitat('A');
-              break;
-            case 'L':
-              cells[i][j] = new Habitat('L');
-              break;
-            case 'X':
-              cells[i][j] = new Road('X');
-              break;
-            case 'N':
-              cells[i][j] = new Road('N');
-              break;
-            case 'r':
-              cells[i][j] = new Road('r');
-              break;
-            case 'R':
-              cells[i][j] = new Restaurant();
-              break;
-            case 'P':
-              cells[i][j] = new Park();
-              break;
+            case 'W': {
+              Habitat w ('W');
+              Habitat* pw = &w;
+              cells[i][j].p = (Habitat*) pw;
+              cells[i][j].id = "HA"; 
+            }
+            break;
+            case 'A': {
+              Habitat a ('A');
+              Habitat* pa = &a;
+              cells[i][j].p = (Habitat*) pa;
+              cells[i][j].id = "HA"; 
+            }  
+            break;
+            case 'L': {
+              Habitat l ('L');
+              Habitat* pl = &l;
+              cells[i][j].p = (Habitat*) pl;
+              cells[i][j].id = "HA"; 
+            }  
+            break;
+            case 'X': {
+              Road x ('X');
+              Road* px = &x;
+              cells[i][j].p = (Road*) px;
+              cells[i][j].id = "RO"; 
+            } 
+            break; 
+            case 'N': {
+              Road n ('N');
+              Road* pn = &n;
+              cells[i][j].p = (Road*) pn;
+              cells[i][j].id = "RO"; 
+            }  
+            break;
+            case 'r': {
+              Road r ('r');
+              Road* pr = &r;
+              cells[i][j].p = (Road*) pr;
+              cells[i][j].id = "RO"; 
+            }  
+            break;
+            case 'R': {
+              Restaurant rt;
+              Restaurant* prt = &rt;
+              cells[i][j].p = (Restaurant*) prt;
+              cells[i][j].id = "RE";
+            }
+            break;
+            case 'P': {
+              Park p;
+              Park* pp = &p;
+              cells[i][j].p = (Park*) pp;
+              cells[i][j].id = "PA";
+            }  
+            break;
           }
         }
         ++i;
@@ -67,29 +98,61 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
       getline(cin, line);
       for (int j = 0; j < length; ++j) {
         switch (line[j]) {
-          case 'W':
-            cells[i][j] = new Habitat('W');
+          case 'W': {
+              Habitat w ('W');
+              Habitat* pw = &w;
+              cells[i][j].p = (Habitat*) pw;
+              cells[i][j].id = "HA"; 
+            }
             break;
-          case 'A':
-            cells[i][j] = new Habitat('A');
+            case 'A': {
+              Habitat a ('A');
+              Habitat* pa = &a;
+              cells[i][j].p = (Habitat*) pa;
+              cells[i][j].id = "HA"; 
+            }  
             break;
-          case 'L':
-            cells[i][j] = new Habitat('L');
+            case 'L': {
+              Habitat l ('L');
+              Habitat* pl = &l;
+              cells[i][j].p = (Habitat*) pl;
+              cells[i][j].id = "HA"; 
+            }  
             break;
-          case 'X':
-            cells[i][j] = new Road('X');
+            case 'X': {
+              Road x ('X');
+              Road* px = &x;
+              cells[i][j].p = (Road*) px;
+              cells[i][j].id = "RO"; 
+            } 
+            break; 
+            case 'N': {
+              Road n ('N');
+              Road* pn = &n;
+              cells[i][j].p = (Road*) pn;
+              cells[i][j].id = "RO"; 
+            }  
             break;
-          case 'N':
-            cells[i][j] = new Road('N');
+            case 'r': {
+              Road r ('r');
+              Road* pr = &r;
+              cells[i][j].p = (Road*) pr;
+              cells[i][j].id = "RO"; 
+            }  
             break;
-          case 'r':
-            cells[i][j] = new Road('r');
+            case 'R': {
+              Restaurant rt;
+              Restaurant* prt = &rt;
+              cells[i][j].p = (Restaurant*) prt;
+              cells[i][j].id = "RE";
+            }
             break;
-          case 'R':
-            cells[i][j] = new Restaurant();
-            break;
-          case 'P':
-            cells[i][j] = new Park();
+            case 'P': {
+              Park p;
+              Park* pp = &p;
+              cells[i][j].p = (Park*) pp;
+              cells[i][j].id = "PA";
+            }  
             break;
         }
       }
@@ -1091,7 +1154,7 @@ void Zoo::Tour() {
       }
     }
     if (i + 1 < width) {
-      char c = MakroGetterCell(cells[i+1][j]);
+      char c = MakroGetterCell(GetInitSymbol,cells[i+1][j]);
       if (c == 'P' || c == 'R') {
         MakroInteractCell(cells[i+1][j]);
       } else if (c == 'W' || c == 'L' || c == 'A') {

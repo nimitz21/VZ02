@@ -19,19 +19,19 @@ Restaurant::Restaurant(string f, bool o) {
 
 Restaurant::~Restaurant() {}
 
-char Cell::GetInitSymbol() const {
+char Restaurant::GetInitSymbol() const {
   return initsymbol;
 }
 
-char Cell::GetSymbol() const {
+char Restaurant::GetSymbol() const {
   return symbol;
 }
 
-void Cell::SetSymbol(char s) {
+void Restaurant::SetSymbol(char s) {
   symbol = s;
 }
 
-void Cell::Render() {
+void Restaurant::Render() {
   cout << symbol;
 }
 

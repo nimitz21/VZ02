@@ -6,14 +6,13 @@
 #define HABITAT_H
 
 #include <iostream>
-#include "cell.h"
 using namespace std;
 
 /** 
  * \brief Class Habitat
  * \details abstract class dari habitat dalam zoo
  */
-class Habitat: public Cell {
+class Habitat {
 public:
   /**
    * \brief Constructor

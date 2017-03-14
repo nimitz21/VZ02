@@ -15,19 +15,19 @@ Road::Road(char t) {
 
 Road::~Road() {}
 
-char Cell::GetInitSymbol() const {
+char Road::GetInitSymbol() const {
   return initsymbol;
 }
 
-char Cell::GetSymbol() const {
+char Road::GetSymbol() const {
   return symbol;
 }
 
-void Cell::SetSymbol(char s) {
+void Road::SetSymbol(char s) {
   symbol = s;
 }
 
-void Cell::Render() {
+void Road::Render() {
   cout << symbol;
 }
 

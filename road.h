@@ -6,13 +6,12 @@
 #define ROAD_H
 
 #include <iostream>
-#include "facility.h"
 
 using namespace std;
 /** \class Road
   * \details Kelas road turunan dari kelas facility berupa jalanan di zoo
   */
-class Road : public Facility {
+class Road {
 public:
   /** \brief Constructor tanpa parameter
     * \details Menciptakan road dengan type=r (road biasa)

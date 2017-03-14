@@ -6,13 +6,12 @@
 #define RESTAURANT_H
 
 #include <iostream>
-#include "facility.h"
 
 using namespace std;
 /** @class Restaurant
   * Kelas restaurant turunan dari kelas facility berupa restoran di zoo
   */
-class Restaurant : public Facility {
+class Restaurant {
 public:
   /** @brief Constructor tanpa parameter
     * Menciptakan restaurant dengan food string kosong dan restaurant tutup

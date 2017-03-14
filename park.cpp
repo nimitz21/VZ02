@@ -19,19 +19,19 @@ Park::~Park() {
 
 }
 
-char Cell::GetInitSymbol() const {
+char Park::GetInitSymbol() const {
   return initsymbol;
 }
 
-char Cell::GetSymbol() const {
+char Park::GetSymbol() const {
   return symbol;
 }
 
-void Cell::SetSymbol(char s) {
+void Park::SetSymbol(char s) {
   symbol = s;
 }
 
-void Cell::Render() {
+void Park::Render() {
   cout << symbol;
 }
 

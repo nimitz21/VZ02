@@ -8,7 +8,7 @@
 class test {
 public:
 	string id;
-	void * c;
+	void * p;
 };
 
 #endif

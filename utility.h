@@ -247,6 +247,89 @@
   }                                                 \
 }
 
+#define MakroMove(Param, Direction)                 \
+{                                                   \
+  if (Param.id == "WF") {                           \
+    ((Wolf *)(Param.p))->Move(Direction);           \
+  }                                                 \
+  else if (Param.id == "LI") {                      \
+    ((Lion *)(Param.p))->Move(Direction);           \
+  }                                                 \
+  else if (Param.id == "ZBR") {                     \
+    ((Zebra *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "ELP") {                     \
+    ((Elephant *)(Param.p))->Move(Direction);       \
+  }                                                 \
+  else if (Param.id == "MCQ") {                     \
+    ((Macaque *)(Param.p))->Move(Direction);        \
+  }                                                 \
+  else if (Param.id == "HG") {                      \
+    ((Hog *)(Param.p))->Move(Direction);            \
+  }                                                 \
+  else if (Param.id == "SHK") {                     \
+    ((Shark *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "MRE") {                     \
+    ((MorayEel *)(Param.p))->Move(Direction);       \
+  }                                                 \
+  else if (Param.id == "DGG") {                     \
+    ((Dugong *)(Param.p))->Move(Direction);         \
+  }                                                 \
+  else if (Param.id == "TRL") {                     \
+    ((Turtle *)(Param.p))->Move(Direction);         \
+  }                                                 \
+  else if (Param.id == "DLP") {                     \
+    ((Dolphin *)(Param.p))->Move(Direction);        \
+  }                                                 \
+  else if (Param.id == "WHL") {                     \
+    ((Whale *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "EGL") {                     \
+    ((Eagle *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "OW") {                      \
+    ((Owl *)(Param.p))->Move(Direction);            \
+  }                                                 \
+  else if (Param.id == "HMB") {                     \
+    ((Hummingbird *)(Param.p))->Move(Direction);    \
+  }                                                 \
+  else if (Param.id == "CKT") {                     \
+    ((Cockatoo *)(Param.p))->Move(Direction);       \
+  }                                                 \
+  else if (Param.id == "RBN") {                     \
+    ((Robin *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "BT") {                      \
+    ((Bat *)(Param.p))->Move(Direction);            \
+  }                                                 \
+  else if (Param.id == "PNG") {                     \
+    ((Penguin *)(Param.p))->Move(Direction);        \
+  }                                                 \
+  else if (Param.id == "HPP") {                     \
+    ((Hippopotamus *)(Param.p))->Move(Direction);   \
+  }                                                 \
+  else if (Param.id == "PLC") {                     \
+    ((Pelican *)(Param.p))->Move(Direction);        \
+  }                                                 \
+  else if (Param.id == "GSE") {                     \
+    ((Goose *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "CRN") {                     \
+    ((Crane *)(Param.p))->Move(Direction);          \
+  }                                                 \
+  else if (Param.id == "DRL") {                     \
+    ((DracoLizard *)(Param.p))->Move(Direction);    \
+  }                                                 \
+  else if (Param.id == "CLG") {                     \
+    ((Colugo *)(Param.p))->Move(Direction);         \
+  }                                                 \
+  else if (Param.id == "SGL") {                     \
+    ((SugarGlider *)(Param.p))->Move(Direction);    \
+  }                                                 \
+}
+
+
 #define MakroGetterCell(Function,Param)             \
 {                                                   \
   if (Param.id == "RO") {                           \
@@ -295,6 +378,52 @@
   }                                                 \
 }
 
-#define MakroGetterSekat(Param, )
+#define MakroGetterSekat(Param, Direction)          \
+{                                                   \
+  if (Param.id == "RO") {                           \
+    ((Road *)(Param.p))->GetSekat(Direction);       \
+  }                                                 \
+  else if (Param.id == "HA") {                      \
+    ((Habitat *)(Param.p))->GetSekat(Direction);    \
+  }                                                 \
+  else if (Param.id == "PA") {                      \
+    ((Park *)(Param.p))->GetSekat(Direction);       \
+  }                                                 \
+  else if (Param.id == "RE") {                      \
+    ((Restaurant *)(Param.p))->GetSekat(Direction); \
+  }                                                 \
+}
+
+#define MakroToggleSekat(Param, Direction)             \
+{                                                      \
+  if (Param.id == "RO") {                              \
+    ((Road *)(Param.p))->ToggleSekat(Direction);       \
+  }                                                    \
+  else if (Param.id == "HA") {                         \
+    ((Habitat *)(Param.p))->ToggleSekat(Direction);    \
+  }                                                    \
+  else if (Param.id == "PA") {                         \
+    ((Park *)(Param.p))->ToggleSekat(Direction);       \
+  }                                                    \
+  else if (Param.id == "RE") {                         \
+    ((Restaurant *)(Param.p))->ToggleSekat(Direction); \
+  }                                                    \
+}
+
+#define MakroRender(Param)                          \
+{                                                   \
+  if (Param.id == "RO") {                           \
+    ((Road *)(Param.p))->Render();                  \
+  }                                                 \
+  else if (Param.id == "HA") {                      \
+    ((Habitat *)(Param.p))->Render();               \
+  }                                                 \
+  else if (Param.id == "PA") {                      \
+    ((Park *)(Param.p))->Render();                  \
+  }                                                 \
+  else if (Param.id == "RE") {                      \
+    ((Restaurant *)(Param.p))->Render()             \
+  }                                                 \
+}
 
 #endif

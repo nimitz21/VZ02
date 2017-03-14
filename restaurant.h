@@ -8,8 +8,8 @@
 #include <iostream>
 
 using namespace std;
-/** @class Restaurant
-  * Kelas restaurant turunan dari kelas facility berupa restoran di zoo
+/** \brief Class Restaurant
+  * \details Kelas restaurant turunan dari kelas facility berupa restoran di zoo
   */
 class Restaurant {
 public:
@@ -90,17 +90,29 @@ public:
    */
   void Interact() const;
 
-  //Tidak diimplementtasi
+  /**
+   * \brief ToggleSekat
+   * \details Memasang atau menghilangkan sekat antar-Cell;
+   * tidak diimplementasi pada class ini, hanya pendukung ABC Cell dan Facility
+   * 
+   * \param direction arah yang ingin dibuka
+   */
   void ToggleSekat(int direction);
     
-  //Tidak diimplementasi
+  /**
+   * \brief GetSekat
+   * \details Mengecek apakah ke arah direction terdapat sekat;
+   * tidak diimplementasi pada class ini, hanya pendukung ABC Cell dan Facility
+   * 
+   * \param direction arah yang ingin dicek
+   */
   bool GetSekat(int direction) const;
 
 private:
-  char initsymbol;
-  char symbol;
-  string food;
-  bool open;  
+  char initsymbol; /**< simbol asli untuk sel dengan jenis tertentu*/
+  char symbol; /**< simbol yang akan ditampilkan pada layar (dapat dioverwrite animal)*/
+  string food; /**< jenis makanan yang dijual di restoran*/
+  bool open; /**< penanda restoran buka atau tutup; true untuk buka, false untuk tutup*/
 };
 
 #endif

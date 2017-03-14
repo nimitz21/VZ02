@@ -143,17 +143,17 @@ public:
   void Move(int direction);
 
 private:
-  static int elephant_nb;
-  const float food = 0.7;
-  string id;
-  int number;
-  char legend;
-  float weight;
-  float eat;
-  char type;
-  pair<int,int> position;
-  set<string> compatible;
-  set<char> habitat;
+  static int elephant_nb; /**< jumlah elephant yang pernah diciptakan*/
+  const float food = 0.7; /**< persentase makan elephant*/
+  string id; /**< identifier unik untuk jenis hewan tersebut*/
+  int number; /**< identifier unik untuk hewan pada jenisnya tersebut*/
+  char legend; /**< legenda hewan pada peta*/
+  float weight; /**< berat hewan tersebut dalam kilogram*/
+  float eat; /**< persentase makanan terhadap berat hewan*/
+  char type; /**< karnivor, herbivor, atau omnivor*/
+  pair<int,int> position; /**< posisi baris dan kolom hewan*/
+  set<string> compatible; /**< list jenis hewan lain yang dapat disatukan dengan hewan tersebut*/
+  set<char> habitat; /**< list habitat yang dapat ditinggali hewan*/
 };
 
 #endif

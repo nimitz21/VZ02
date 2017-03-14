@@ -70,13 +70,16 @@ public:
    */
   bool GetSekat(int direction) const;
   
-  //Tidak diimplementasi
+  /**
+   * \brief Interact
+   * \details Interaksi dengan Animal; tidak diimplementasi
+   */
   void Interact() const;
 
 private:
-  char initsymbol;
-  char symbol;  
-  bool sekat[4];
+  char initsymbol; /**< simbol asli untuk sel dengan jenis tertentu*/
+  char symbol; /**< simbol yang akan ditampilkan pada layar (dapat dioverwrite animal)*/
+  bool sekat[4]; /**< state dari sekat; true untuk terbuka, false untuk tertutup */
 };
 
 #endif

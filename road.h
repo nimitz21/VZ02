@@ -8,7 +8,7 @@
 #include <iostream>
 
 using namespace std;
-/** \class Road
+/** \brief Class Road
   * \details Kelas road turunan dari kelas facility berupa jalanan di zoo
   */
 class Road {
@@ -44,9 +44,9 @@ public:
   char GetSymbol() const;
 
   /**
-   * \brief SetSymbol.
-   * \details mengubah symbol dengan s.
-   * \param s symbol yang baru.
+   * \brief GetSymbol.
+   * \details mengembalikan nilai simbol cell.
+   * \return symbol.
    */
   void SetSymbol(char s);
 
@@ -62,15 +62,27 @@ public:
      */
   void Interact() const;
 
-  //Tidak diimplementtasi
+  /**
+   * \brief ToggleSekat
+   * \details Memasang atau menghilangkan sekat antar-Cell;
+   * tidak diimplementasi pada class ini, hanya pendukung ABC Cell dan Facility
+   * 
+   * \param direction arah yang ingin dibuka
+   */
   void ToggleSekat(int direction);
     
-  //Tidak diimplementasi
+  /**
+   * \brief GetSekat
+   * \details Mengecek apakah ke arah direction terdapat sekat;
+   * tidak diimplementasi pada class ini, hanya pendukung ABC Cell dan Facility
+   * 
+   * \param direction arah yang ingin dicek
+   */
   bool GetSekat(int direction) const;
   
 private:
-  char initsymbol;
-  char symbol;
+  char initsymbol; /**< simbol asli untuk sel dengan jenis tertentu*/
+  char symbol; /**< simbol yang akan ditampilkan pada layar (dapat dioverwrite animal)*/
 };
 
 #endif

@@ -280,10 +280,9 @@ Zoo::Zoo(const Zoo& z): width(z.width), length(z.length) {
     }
   }
   cage_nb = z.cage_nb;
-  int py, px;
-  for (list<Pointer>::const_iterator it = z.animals.begin(); it != z.animals.end(); ++it){
-    py = GetPos(*it).first;
-    px = GetPos(*it).second;
+  for (list<Pointer>::const_iterator it = z.animals.begin();
+       it != z.animals.end(); ++it){
+    int py = GetPos(*it).first, px = GetPos(*it).second;
     MakroNewAnimal(GetId(*it),GetWeight(*it));
   }
 }
@@ -309,10 +308,9 @@ Zoo& Zoo::operator=(const Zoo& z) {
     }
   }
   cage_nb = z.cage_nb;
-  int py, px;
-  for (list<Pointer>::const_iterator it = z.animals.begin(); it != z.animals.end(); ++it){
-    py = GetPos(*it).first;
-    px = GetPos(*it).second;
+  for (list<Pointer>::const_iterator it = z.animals.begin();
+       it != z.animals.end(); ++it){
+    int py = GetPos(*it).first, px = GetPos(*it).second;
     MakroNewAnimal(GetId(*it),GetWeight(*it));
   }
   return *this;

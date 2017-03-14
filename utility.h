@@ -1,88 +1,86 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#define MakroGetterAnimal(Type,Function,Param);       \
-{                                                     \
-  Type Function(const Pointer& Param) {               \  
-    if (Param.id == "WF") {                           \
-      return ((Wolf *)(Param.p))->Function();         \
-    }                                                 \
-    else if (Param.id == "LI") {                      \
-      return ((Lion *)(Param.p))->Function();         \
-    }                                                 \
-    else if (Param.id == "ZBR") {                     \
-      return ((Zebra *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "ELP") {                     \
-      return ((Elephant *)(Param.p))->Function();     \
-    }                                                 \
-    else if (Param.id == "MCQ") {                     \
-      return ((Macaque *)(Param.p))->Function();      \
-    }                                                 \
-    else if (Param.id == "HG") {                      \
-      return ((Hog *)(Param.p))->Function();          \
-    }                                                 \
-    else if (Param.id == "SHK") {                     \
-      return ((Shark *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "MRE") {                     \
-      return ((MorayEel *)(Param.p))->Function();     \
-    }                                                 \
-    else if (Param.id == "DGG") {                     \
-      return ((Dugong *)(Param.p))->Function();       \
-    }                                                 \
-    else if (Param.id == "TRL") {                     \
-      return ((Turtle *)(Param.p))->Function();       \
-    }                                                 \
-    else if (Param.id == "DLP") {                     \
-      return ((Dolphin *)(Param.p))->Function();      \
-    }                                                 \
-    else if (Param.id == "WHL") {                     \
-      return ((Whale *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "EGL") {                     \
-      return ((Eagle *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "OW") {                      \
-      return ((Owl *)(Param.p))->Function();          \
-    }                                                 \
-    else if (Param.id == "HMB") {                     \
-      return ((Hummingbird *)(Param.p))->Function();  \
-    }                                                 \
-    else if (Param.id == "CKT") {                     \
-      return ((Cockatoo *)(Param.p))->Function();     \
-    }                                                 \
-    else if (Param.id == "RBN") {                     \
-      return ((Robin *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "BT") {                      \
-      return ((Bat *)(Param.p))->Function();          \
-    }                                                 \
-    else if (Param.id == "PNG") {                     \
-      return ((Penguin *)(Param.p))->Function();      \
-    }                                                 \
-    else if (Param.id == "HPP") {                     \
-      return ((Hippopotamus *)(Param.p))->Function(); \
-    }                                                 \
-    else if (Param.id == "PLC") {                     \
-      return ((Pelican *)(Param.p))->Function();      \
-    }                                                 \
-    else if (Param.id == "GSE") {                     \
-      return ((Goose *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "CRN") {                     \
-      return ((Crane *)(Param.p))->Function();        \
-    }                                                 \
-    else if (Param.id == "DRL") {                     \
-      return ((DracoLizard *)(Param.p))->Function();  \
-    }                                                 \
-    else if (Param.id == "CLG") {                     \
-      return ((Colugo *)(Param.p))->Function();       \
-    }                                                 \
-    else if (Param.id == "SGL") {                     \
-      return ((SugarGlider *)(Param.p))->Function();  \
-    }                                                 \
-  }                                                   \
+#define MakroGetterAnimal(Type,Function,Param);     \
+Type Function(const Pointer& Param) {               \  
+  if (Param.id == "WF") {                           \
+    return ((Wolf *)(Param.p))->Function();         \
+  }                                                 \
+  else if (Param.id == "LI") {                      \
+    return ((Lion *)(Param.p))->Function();         \
+  }                                                 \
+  else if (Param.id == "ZBR") {                     \
+    return ((Zebra *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "ELP") {                     \
+    return ((Elephant *)(Param.p))->Function();     \
+  }                                                 \
+  else if (Param.id == "MCQ") {                     \
+    return ((Macaque *)(Param.p))->Function();      \
+  }                                                 \
+  else if (Param.id == "HG") {                      \
+    return ((Hog *)(Param.p))->Function();          \
+  }                                                 \
+  else if (Param.id == "SHK") {                     \
+    return ((Shark *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "MRE") {                     \
+    return ((MorayEel *)(Param.p))->Function();     \
+  }                                                 \
+  else if (Param.id == "DGG") {                     \
+    return ((Dugong *)(Param.p))->Function();       \
+  }                                                 \
+  else if (Param.id == "TRL") {                     \
+    return ((Turtle *)(Param.p))->Function();       \
+  }                                                 \
+  else if (Param.id == "DLP") {                     \
+    return ((Dolphin *)(Param.p))->Function();      \
+  }                                                 \
+  else if (Param.id == "WHL") {                     \
+    return ((Whale *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "EGL") {                     \
+    return ((Eagle *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "OW") {                      \
+    return ((Owl *)(Param.p))->Function();          \
+  }                                                 \
+  else if (Param.id == "HMB") {                     \
+    return ((Hummingbird *)(Param.p))->Function();  \
+  }                                                 \
+  else if (Param.id == "CKT") {                     \
+    return ((Cockatoo *)(Param.p))->Function();     \
+  }                                                 \
+  else if (Param.id == "RBN") {                     \
+    return ((Robin *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "BT") {                      \
+    return ((Bat *)(Param.p))->Function();          \
+  }                                                 \
+  else if (Param.id == "PNG") {                     \
+    return ((Penguin *)(Param.p))->Function();      \
+  }                                                 \
+  else if (Param.id == "HPP") {                     \
+    return ((Hippopotamus *)(Param.p))->Function(); \
+  }                                                 \
+  else if (Param.id == "PLC") {                     \
+    return ((Pelican *)(Param.p))->Function();      \
+  }                                                 \
+  else if (Param.id == "GSE") {                     \
+    return ((Goose *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "CRN") {                     \
+    return ((Crane *)(Param.p))->Function();        \
+  }                                                 \
+  else if (Param.id == "DRL") {                     \
+    return ((DracoLizard *)(Param.p))->Function();  \
+  }                                                 \
+  else if (Param.id == "CLG") {                     \
+    return ((Colugo *)(Param.p))->Function();       \
+  }                                                 \
+  else if (Param.id == "SGL") {                     \
+    return ((SugarGlider *)(Param.p))->Function();  \
+  }                                                 \
 }
 
 #define MakroSetterAnimal(Function,Param,Value)     \
@@ -332,22 +330,20 @@
 }
 
 
-#define MakroGetterCell(Type,Function,Param);         \
-{                                                     \
-  Type Function(const Pointer& Param) {               \
-    if (Param.id == "RO") {                           \
-      return ((Road *)(Param.p))->Function();         \
-    }                                                 \
-    else if (Param.id == "HA") {                      \
-      return ((Habitat *)(Param.p))->Function();      \
-    }                                                 \
-    else if (Param.id == "PA") {                      \
-      return ((Park *)(Param.p))->Function();         \
-    }                                                 \
-    else if (Param.id == "RE") {                      \
-      return ((Restaurant *)(Param.p))->Function();   \
-    }                                                 \
-  }                                                   \
+#define MakroGetterCell(Type,Function,Param);       \
+Type Function(const Pointer& Param) {               \
+  if (Param.id == "RO") {                           \
+    return ((Road *)(Param.p))->Function();         \
+  }                                                 \
+  else if (Param.id == "HA") {                      \
+    return ((Habitat *)(Param.p))->Function();      \
+  }                                                 \
+  else if (Param.id == "PA") {                      \
+    return ((Park *)(Param.p))->Function();         \
+  }                                                 \
+  else if (Param.id == "RE") {                      \
+    return ((Restaurant *)(Param.p))->Function();   \
+  }                                                 \
 }
 
 #define MakroSetterCell(Function,Param,Value)       \
@@ -382,22 +378,20 @@
   }                                                 \
 }
 
-#define MakroGetterSekat(Param, Direction)                   \
-{                                                            \
-  bool GetSekat(const Pointer& Param, int Direction) {       \
-    if (Param.id == "RO") {                                  \
-      return ((Road *)(Param.p))->GetSekat(Direction);       \
-    }                                                        \
-    else if (Param.id == "HA") {                             \
-      return ((Habitat *)(Param.p))->GetSekat(Direction);    \
-    }                                                        \
-    else if (Param.id == "PA") {                             \
-      ((Park *)(Param.p))->GetSekat(Direction);              \
-    }                                                        \
-    else if (Param.id == "RE") {                             \
-      ((Restaurant *)(Param.p))->GetSekat(Direction);        \
-    }                                                        \
-  }                                                          \
+#define MakroGetterSekat(Param, Direction)                 \
+bool GetSekat(const Pointer& Param, int Direction) {       \
+  if (Param.id == "RO") {                                  \
+    return ((Road *)(Param.p))->GetSekat(Direction);       \
+  }                                                        \
+  else if (Param.id == "HA") {                             \
+    return ((Habitat *)(Param.p))->GetSekat(Direction);    \
+  }                                                        \
+  else if (Param.id == "PA") {                             \
+    ((Park *)(Param.p))->GetSekat(Direction);              \
+  }                                                        \
+  else if (Param.id == "RE") {                             \
+    ((Restaurant *)(Param.p))->GetSekat(Direction);        \
+  }                                                        \
 }
 
 #define MakroToggleSekat(Param, Direction)             \

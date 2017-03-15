@@ -3,10 +3,10 @@
  */
 
 #include "zoo.h"
-#include "road.h"
-#include "habitat.h"
-#include "park.h"
-#include "restaurant.h"
+#include "../road/road.h"
+#include "../habitat/habitat.h"
+#include "../park/park.h"
+#include "../restaurant/restaurant.h"
 #include <time.h>
 #include <list>
 #include <set>
@@ -37,7 +37,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
   }
   string line;
   if (Auto) { // automatis ctor dari file eksternal
-    ifstream ifile("map.txt");
+    ifstream ifile("asset/map.txt");
     if (ifile.is_open()) {
       int i = 0;
       while (getline(ifile, line)) {
@@ -188,7 +188,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
   }
   if (Auto) {
     // membaca animals dari animals.txt
-    ifstream in("animals.txt");
+    ifstream in("asset/animals.txt");
     if (in.is_open()) {
       while (getline(in, line)) {
         string id = "";

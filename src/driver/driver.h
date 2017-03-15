@@ -1,7 +1,7 @@
 #ifndef DRIVER_H
 #define DRIVER_H
 
-#include "zoo.h"
+#include "../zoo/zoo.h"
 using namespace std;
 
 /**

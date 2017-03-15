@@ -4,7 +4,7 @@
 #define POINTER_H
 
 #include <string>
-#include "utility.h"
+#include "../utility/utility.h"
 
 using namespace std;
 

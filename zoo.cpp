@@ -51,8 +51,8 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
   }
   else { // membaca input dari user
     for (int i = 0; i < width; ++i) {
-      getline(cin, line);
       for (int j = 0; j < length; ++j) {
+        cin >> line[j];
         MakroNewCell(line[j]);
       }
     }
@@ -254,7 +254,7 @@ Zoo::Zoo(bool Auto, int w, int l): width(w), length(l) {
         cin >> py;
         cout << "Apakah ingin menggunakan berat default? (y/n)";
         cin >> def_weight;
-        if (def_weight == 'Y' || def_weight == 'y') {
+        if (def_weight == 'N' || def_weight == 'n') {
           do{
             cout << "Input berat : (>0)";
             cin >> weight;
@@ -347,7 +347,7 @@ list<Pointer>::iterator Zoo::FindAnimal(pair<int,int> pos) {
 void Zoo::AddAnimal(Pointer a) {
   int posx = GetPos(a).first;
   int posy = GetPos(a).second;
-  if (posx < width && posy << length) {
+  if (posx >= 0 && posx < width && posy >= 0 && posy < length) {
     int cage = cage_map[posx][posy];
     // cek if habitat dlu
     set<char> hab = GetHabitat(a);
